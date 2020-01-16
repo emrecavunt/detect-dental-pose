@@ -45,7 +45,7 @@ def index(request):
     except Exception as e:
         return JSONResponse(str(e))
 
-@app.route('/analyze-pose', methods=['POST'])
+@app.route('/analyze', methods=['POST'])
 async def analyze(request):
     try:
         t = time.time() # get execution time
@@ -56,7 +56,7 @@ async def analyze(request):
         dt = time.time() - t
         # prob = [round(i,3) for i in prob.data.numpy()]
         dtexectime = ("%0.03f seconds" % (dt))
-        return JSONResponse({'result-pose': str(result.obj),'executiontime': dtexectime, 'probability':  str(prob)})
+        return JSONResponse({'result': str(result),'executiontime': dtexectime, 'probability':  str(prob)})
     except Exception as e:
         return JSONResponse({'error:',str(e)})
 
